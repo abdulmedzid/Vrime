@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Vrime</string>
+
+    <string name="CURRENT_LOCATION">currentLocation</string>
+    <string name="CURRENT_COUNTRY">currentCountry</string>
+    <string name="CURRENT_LOCATION_ID">currentLocationId</string>
+    <string name="CURRENT_LOCATION_LAT">currentLat</string>
+    <string name="CURRENT_LOCATION_LON">currentLon</string>
+
+
 </resources>

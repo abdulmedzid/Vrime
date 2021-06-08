@@ -8,5 +8,6 @@
     <color name="wheat">#FFFAE0</color>
     <color name="yellow">#FFCD00</color>
     <color name="black21">#212121</color>
-    <color name="hint_dark">#424242</color>
+    <color name="hint_dark">#686868</color>
+    <color name="hint_light">#B5B5B5</color>
 </resources>

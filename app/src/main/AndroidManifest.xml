@@ -27,7 +27,7 @@
             android:theme="@style/Theme.App" />
 
         <activity
-            android:name=".LocationActivity"
+            android:name=".location.LocationActivity"
             android:theme="@style/Theme.App"/>
 
         <meta-data

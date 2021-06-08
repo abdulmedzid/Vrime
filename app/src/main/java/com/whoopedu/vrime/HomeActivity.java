@@ -1,32 +1,43 @@
 package com.whoopedu.vrime;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.WindowManager;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
 
+import com.whoopedu.vrime.data.WeatherData;
+import com.whoopedu.vrime.data.Location;
+import com.whoopedu.vrime.location.LocationActivity;
 import com.whoopedu.vrime.util.BaseActivity;
-import com.whoopedu.vrime.util.NetworkUtils;
-
-import java.net.URL;
 
 public class HomeActivity extends BaseActivity {
 
     private Toolbar mHomeToolbar;
+
+    private TextView mLocationNameTextView;
+
+    private Location mLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         loadActionBar();
+        mLocationNameTextView = findViewById(R.id.tv_location);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mLocation = Location.getLocation(this);
+        mLocationNameTextView.setText(mLocation.getCityName());
+
+        WeatherData.getWeatherData(this, mLocation, findViewById(R.id.tv_result));
     }
 
     /**
