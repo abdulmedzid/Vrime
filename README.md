@@ -6,7 +6,8 @@ User has the ability to look into weather data for over 200.000 cities across th
 ## Screens
 
 ### Home
-Home screen with current and future weather data for the selected location. It has a dynamic background depending on the time of day and type of weather.<br/>
+Home screen with current and future weather data for the selected location. It has a dynamic background depending on the time of day and type of weather.
+<br/><br/>
 <img src="./app/sampledata/home.png" width="30%" height="30%">
 &ensp;
 <img src="./app/sampledata/home_night.png" width="30%" height="30%">
@@ -16,6 +17,7 @@ Home screen with current and future weather data for the selected location. It h
 ### Location Picking
 User has the ability to chose any of the 200.000 locations that OpenWeatherMap provides.\n  
 By typing in the search query user gets most relevant results from the apps SQLites database.
+<br/>
 <img src="./app/sampledata/location.png" width="30%" height="30%">
 
 ## Library
