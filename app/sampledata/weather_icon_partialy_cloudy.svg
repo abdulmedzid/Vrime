@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="148.664" height="138.128" viewBox="0 0 148.664 138.128">
+  <defs>
+    <filter id="Ellipse_29" x="33.664" y="0" width="114" height="114" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feFlood flood-opacity="0.22"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Union_1" x="0" y="17.872" width="148.664" height="120.256" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="12" result="blur-2"/>
+      <feFlood flood-opacity="0.22"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="weather_icon_partialy_cloudy" transform="translate(-101.168 -480)">
+    <g transform="matrix(1, 0, 0, 1, 101.17, 480)" filter="url(#Ellipse_29)">
+      <circle id="Ellipse_29-2" data-name="Ellipse 29" cx="21" cy="21" r="21" transform="translate(69.66 33)" fill="#ffcd00"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, 101.17, 480)" filter="url(#Union_1)">
+      <path id="Union_1-2" data-name="Union 1" d="M21.363,28.274q-.65.042-1.311.042A20.036,20.036,0,1,1,36.25-3.531q.65-.042,1.311-.042a20.056,20.056,0,0,1,5.925.889,20.032,20.032,0,1,1,7.2,34.294,20.063,20.063,0,0,1-29.325-3.336Z" transform="translate(36 62.63)" fill="#f3f3f3"/>
+    </g>
+  </g>
+</svg>

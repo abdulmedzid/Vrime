@@ -23,7 +23,7 @@
         </activity>
 
         <activity
-            android:name=".HomeActivity"
+            android:name=".home.HomeActivity"
             android:theme="@style/Theme.App" />
 
         <activity

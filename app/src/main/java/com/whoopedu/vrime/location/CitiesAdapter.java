@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.whoopedu.vrime.R;
-import com.whoopedu.vrime.data.Location;
+import com.whoopedu.vrime.data.locations.Location;
 
 import java.util.List;
 

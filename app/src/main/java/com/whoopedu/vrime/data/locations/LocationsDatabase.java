@@ -1,4 +1,4 @@
-package com.whoopedu.vrime.data;
+package com.whoopedu.vrime.data.locations;
 
 import android.content.Context;
 

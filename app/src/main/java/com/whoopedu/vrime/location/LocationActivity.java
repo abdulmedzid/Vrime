@@ -11,15 +11,14 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.util.LruCache;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 
 import com.whoopedu.vrime.R;
-import com.whoopedu.vrime.data.CityReaderContract;
-import com.whoopedu.vrime.data.Location;
-import com.whoopedu.vrime.data.LocationsDatabase;
+import com.whoopedu.vrime.data.locations.CityReaderContract;
+import com.whoopedu.vrime.data.locations.Location;
+import com.whoopedu.vrime.data.locations.LocationsDatabase;
 import com.whoopedu.vrime.util.BaseActivity;
 import com.whoopedu.vrime.util.ImpatientClickListener;
 

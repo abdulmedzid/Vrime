@@ -1,10 +1,9 @@
 package com.whoopedu.vrime;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.whoopedu.vrime.home.HomeActivity;
 import com.whoopedu.vrime.util.BaseActivity;
 
 public class LauncherActivity extends BaseActivity {

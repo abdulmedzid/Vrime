@@ -7,5 +7,6 @@
     <string name="CURRENT_LOCATION_LAT">currentLat</string>
     <string name="CURRENT_LOCATION_LON">currentLon</string>
 
+    <string name="TIME_OF_WEATHER_UPDATE">weatherUpdate</string>
 
 </resources>

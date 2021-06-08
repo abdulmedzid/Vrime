@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="128.332" height="128.332" viewBox="0 0 128.332 128.332">
+  <defs>
+    <filter id="weather_icon_sunny" x="0" y="0" width="128.332" height="128.332" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feFlood flood-opacity="0.22"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#weather_icon_sunny)">
+    <circle id="weather_icon_sunny-2" data-name="weather_icon_sunny" cx="28.166" cy="28.166" r="28.166" transform="translate(36 33)" fill="#ffcd00"/>
+  </g>
+</svg>

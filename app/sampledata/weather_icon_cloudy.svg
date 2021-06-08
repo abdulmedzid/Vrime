@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="142" height="120" viewBox="0 0 142 120">
+  <defs>
+    <filter id="Union_3" x="13" y="8" width="129" height="112" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Union_5" x="0" y="0" width="129" height="112" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="12" result="blur-2"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="weather_icon_cloudy" transform="translate(-1320 686)">
+    <g transform="matrix(1, 0, 0, 1, 1320, -686)" filter="url(#Union_3)">
+      <path id="Union_3-2" data-name="Union 3" d="M24.549,36.041A15.623,15.623,0,0,1,0,23.445,15.441,15.441,0,0,1,11.748,8.516,15.7,15.7,0,0,1,33.554,2.1,15.653,15.653,0,0,1,41.416,0,15.492,15.492,0,0,1,57,15.4a15.334,15.334,0,0,1-6.853,12.756,15.662,15.662,0,0,1-25.6,7.886Z" transform="translate(49 41)" fill="#f3f3f3"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, 1320, -686)" filter="url(#Union_5)">
+      <path id="Union_5-2" data-name="Union 5" d="M24.549,36.041A15.623,15.623,0,0,1,0,23.445,15.441,15.441,0,0,1,11.748,8.516,15.7,15.7,0,0,1,33.554,2.1,15.653,15.653,0,0,1,41.416,0,15.492,15.492,0,0,1,57,15.4a15.334,15.334,0,0,1-6.853,12.756,15.662,15.662,0,0,1-25.6,7.886Z" transform="translate(36 33)" fill="#f3f3f3"/>
+    </g>
+  </g>
+</svg>
