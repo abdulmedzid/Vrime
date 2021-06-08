@@ -6,9 +6,11 @@ User has the ability to look into weather data for over 200.000 cities across th
 ## Screens
 
 ### Home
-Home screen with current and future weather data for the selected location. It has a dynamic background depending on the time of day and type of weather.
+Home screen with current and future weather data for the selected location. It has a dynamic background depending on the time of day and type of weather.\n
 <img src="./app/sampledata/home.png" width="30%" height="30%">
+&ensp;
 <img src="./app/sampledata/home_night.png" width="30%" height="30%">
+&ensp;
 <img src="./app/sampledata/home_cloudy.png" width="30%" height="30%">
 
 ### Location Picking
