@@ -1,12 +1,12 @@
 # Vrime
-How can you not have a weather app in your portfolio?\n
+How can you not have a weather app in your portfolio?<br/>
 An Android app that gets the latest weather data from OpenWeatherMap and displays it through a simple user interface.
 User has the ability to look into weather data for over 200.000 cities across the globe from Sarajevo to Tokyo.
 
 ## Screens
 
 ### Home
-Home screen with current and future weather data for the selected location. It has a dynamic background depending on the time of day and type of weather.\n
+Home screen with current and future weather data for the selected location. It has a dynamic background depending on the time of day and type of weather.<br/>
 <img src="./app/sampledata/home.png" width="30%" height="30%">
 &ensp;
 <img src="./app/sampledata/home_night.png" width="30%" height="30%">
