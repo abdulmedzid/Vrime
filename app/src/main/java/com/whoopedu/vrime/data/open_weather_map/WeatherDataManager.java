@@ -29,11 +29,11 @@ import java.util.Date;
 public class WeatherDataManager {
 
     private static final String API_KEY = "cade7ce05030f131adea4c05a946dd9c";
-    private static final long UPDATE_DELAY = 60 * 60 * 1000;
+    private static final long UPDATE_DELAY = 60 * 60;
 
     private WeatherDataListener mCallback;
 
-    public WeatherDataManager(WeatherDataListener callback)  {
+    public WeatherDataManager(WeatherDataListener callback) {
         mCallback = callback;
     }
 
@@ -53,7 +53,7 @@ public class WeatherDataManager {
     }
 
     private static boolean isLocationChanged() {
-        return  false;
+        return false;
     }
 
     private void saveJsonToFile(Context ctx, String response) {
@@ -133,8 +133,16 @@ public class WeatherDataManager {
 
                     mCallback.onLoadData(wmp);
                 }, error -> {
+                    Gson gson = new Gson();
+                    try {
+                        WeatherMapData wmp = loadDataFromStorage(ctx);
+                        mCallback.onLoadData(wmp);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
 
-        });
+                }
+        );
 
         queue.add(stringRequest);
     }
@@ -144,16 +152,18 @@ public class WeatherDataManager {
 
         String baseUrl = "https://api.openweathermap.org/data/2.5/onecall";
 
+
         Uri uri = Uri.parse(baseUrl).buildUpon()
                 .appendQueryParameter("lat", Float.toString(location.getLat()))
                 .appendQueryParameter("lon", Float.toString(location.getLon()))
-                .appendQueryParameter("exclude", "hourly")
+                .appendQueryParameter("exclude", "minutely")
                 .appendQueryParameter("appid", API_KEY)
                 .build();
 
         URL url = null;
         try {
             url = new URL(uri.toString());
+            Log.v("URL", url.toString());
             return url.toString();
         } catch (MalformedURLException e) {
             e.printStackTrace();

@@ -6,19 +6,29 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.ImageView;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.whoopedu.vrime.R;
-import com.whoopedu.vrime.data.open_weather_map.WeatherCondition;
+import com.whoopedu.vrime.data.open_weather_map.CurrentWeather;
+import com.whoopedu.vrime.data.open_weather_map.DailyTemperature;
+import com.whoopedu.vrime.data.open_weather_map.DailyWeather;
 import com.whoopedu.vrime.data.open_weather_map.WeatherDataManager;
 import com.whoopedu.vrime.data.locations.Location;
 import com.whoopedu.vrime.data.open_weather_map.WeatherMapData;
 import com.whoopedu.vrime.location.LocationActivity;
 import com.whoopedu.vrime.util.BaseActivity;
+
+import java.text.DateFormatSymbols;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class HomeActivity extends BaseActivity implements WeatherDataManager.WeatherDataListener {
 
@@ -27,7 +37,14 @@ public class HomeActivity extends BaseActivity implements WeatherDataManager.Wea
     private Location mLocation;
 
     private TextView mTemperatureTextView;
+    private TextView mFeelsLikeTextView;
+
     private ImageView mWeatherStatusImageView;
+    private TextView mWeatherStatusTextView;
+
+    private RecyclerView mHourlyPrognosisRecyclerView;
+    private RecyclerView mDailyPrognosisRecyclerView;
+
 
     private WeatherDataManager mWeatherDataManager;
     @Override
@@ -39,7 +56,27 @@ public class HomeActivity extends BaseActivity implements WeatherDataManager.Wea
         mWeatherDataManager = new WeatherDataManager(this);
 
         mTemperatureTextView = findViewById(R.id.tv_temperature);
+        mFeelsLikeTextView = findViewById(R.id.tv_feels_like);
         mWeatherStatusImageView = findViewById(R.id.iv_weather_status);
+        mWeatherStatusTextView = findViewById(R.id.tv_weather_status);
+
+        mHourlyPrognosisRecyclerView = findViewById(R.id.rv_hourly_prognosis);
+        mHourlyPrognosisRecyclerView.setLayoutManager(
+                new LinearLayoutManager(
+                        this,
+                        LinearLayoutManager.HORIZONTAL,
+                        false
+                )
+        );
+
+        mDailyPrognosisRecyclerView = findViewById(R.id.rv_daily_prognosis);
+        mDailyPrognosisRecyclerView.setLayoutManager(
+                new LinearLayoutManager(
+                        this,
+                        LinearLayoutManager.HORIZONTAL,
+                        false
+                )
+        );
     }
 
     @Override
@@ -83,51 +120,70 @@ public class HomeActivity extends BaseActivity implements WeatherDataManager.Wea
         startActivity(locationActivityIntent);
     }
 
-    public enum WeatherConditions {
-        THUNDERSTORM,
-        RAIN,
-        SNOW,
-        ATMOSPHERE,
-        CLEAR,
-        CLOUDS
+    private void fadeIn(View v) {
+        v.setVisibility(View.VISIBLE);
+        AlphaAnimation alphaAnimation = new AlphaAnimation(0, 1.f);
+        alphaAnimation.setDuration(450);
+        alphaAnimation.setFillAfter(true);
+        v.startAnimation(alphaAnimation);
     }
 
     @Override
     public void onLoadData(WeatherMapData wmp) {
         int temp = Math.round(wmp.current.temp - 273.15f);
-        mTemperatureTextView.setText(Integer.toString(temp) + "°");
+        int feelsLike = Math.round(wmp.current.feels_like - 273.15f);
 
-        WeatherConditions weatherCondition = WeatherConditions.CLEAR;
+        mTemperatureTextView.setText(temp + "°");
+        mFeelsLikeTextView.setText("feels like " + feelsLike + "°");
 
-        if (wmp.current.weather.get(0).id >= 200)
-            weatherCondition = WeatherConditions.THUNDERSTORM;
-        if (wmp.current.weather.get(0).id >= 300)
-            weatherCondition = WeatherConditions.RAIN;
-         if (wmp.current.weather.get(0).id >= 600)
-            weatherCondition = WeatherConditions.SNOW;
-         if (wmp.current.weather.get(0).id >= 700)
-            weatherCondition = WeatherConditions.CLEAR;
-         if (wmp.current.weather.get(0).id > 800)
-            weatherCondition = WeatherConditions.CLOUDS;
+        fadeIn(mTemperatureTextView);
+        fadeIn(mFeelsLikeTextView);
+        fadeIn(mWeatherStatusImageView);
+        fadeIn(mWeatherStatusTextView);
+
+        mWeatherStatusImageView.setImageResource(
+                WeatherIndicators.getImageResBasedOnWeatherStatusId(wmp.current.weather.get(0).id)
+        );
+
+        mWeatherStatusTextView.setText(wmp.current.weather.get(0).description);
 
 
-        switch (weatherCondition) {
+        ArrayList<Prognosis> hourlyPrognosis = new ArrayList<>();
 
-            case THUNDERSTORM:
-                mWeatherStatusImageView.setImageResource(R.drawable.weather_icon_thunderstorm);
-                break;
-            case RAIN:
-                mWeatherStatusImageView.setImageResource(R.drawable.weather_icon_rain);
-                break;
-            case SNOW:
-                mWeatherStatusImageView.setImageResource(R.drawable.weather_icon_snow);
-                break;
-            case CLEAR:
-                mWeatherStatusImageView.setImageResource(R.drawable.weather_icon_sunny);
-                break;
-            case CLOUDS:
-                mWeatherStatusImageView.setImageResource(R.drawable.weather_icon_cloudy);
-                break;
+        for (CurrentWeather weather : wmp.hourly.subList(0, 24)) {
+
+            Date date = new Date(weather.dt * 1000);
+
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(date);
+            int hours = cal.get(Calendar.HOUR_OF_DAY);
+            String time = hours + "h";
+
+            hourlyPrognosis.add(new Prognosis(
+                time, weather.weather.get(0), Math.round(weather.temp - 273.15f)
+            ));
         }
+
+        WeatherPrognosisAdapter hourlyPrognosisAdapter = new WeatherPrognosisAdapter(hourlyPrognosis);
+        mHourlyPrognosisRecyclerView.setAdapter(hourlyPrognosisAdapter);
+
+
+        ArrayList<Prognosis> dailyPrognosis = new ArrayList<>();
+
+        for (DailyWeather weather : wmp.daily) {
+
+            Date date = new Date(weather.dt * 1000);
+
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(date);
+            String time = new DateFormatSymbols().getShortWeekdays()[cal.get(Calendar.DAY_OF_WEEK)];
+
+            dailyPrognosis.add(new Prognosis(
+                    time, weather.weather.get(0), Math.round(weather.temp.day - 273.15f)
+            ));
+        }
+
+        WeatherPrognosisAdapter dailyPrognosisAdapter = new WeatherPrognosisAdapter(dailyPrognosis);
+        mDailyPrognosisRecyclerView.setAdapter(dailyPrognosisAdapter);
     }
 }
