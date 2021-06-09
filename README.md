@@ -15,7 +15,7 @@ Home screen with current and future weather data for the selected location. It h
 <img src="./app/sampledata/home_cloudy.png" width="30%" height="30%">
 
 ### Location Picking
-User has the ability to chose any of the 200.000 locations that OpenWeatherMap provides.\n  
+User has the ability to chose any of the 200.000 locations that OpenWeatherMap provides.<br/>  
 By typing in the search query user gets most relevant results from the apps SQLites database.
 <br/><br/>
 <img src="./app/sampledata/location.png" width="30%" height="30%">
