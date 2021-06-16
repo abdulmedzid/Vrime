@@ -1,7 +1,7 @@
 # Vrime
 How can you not have a weather app in your portfolio?<br/>
 An Android app that gets the latest weather data from OpenWeatherMap and displays it through a simple user interface.
-User has the ability to look into weather data for over 200.000 cities across the globe from Sarajevo to Tokyo.
+User has the ability to look into weather data for over 200.000 cities across the globe.
 
 ## Screens
 
