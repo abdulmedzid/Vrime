@@ -16,7 +16,7 @@ Home screen with current and future weather data for the selected location. It h
 
 ### Location Picking
 User has the ability to chose any of the 200.000 locations that OpenWeatherMap provides.<br/>  
-By typing in the search query user gets most relevant results from the apps SQLites database.
+By typing in the search query user gets most relevant results from the apps SQLite database.
 <br/><br/>
 <img src="./app/sampledata/location.png" width="30%" height="30%">
 
